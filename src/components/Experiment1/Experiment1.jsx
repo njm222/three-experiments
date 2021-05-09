@@ -4,6 +4,9 @@ import React, {
 import PropTypes from 'prop-types';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Loader, Stage } from '@react-three/drei';
+import { useSpring, animated, config } from '@react-spring/three';
+import * as THREE from 'three';
+import { hslToHex } from '../../helpers/hslToHex';
 
 function Box({ isPlaying }) {
   // This reference will give us direct access to the mesh
@@ -11,29 +14,38 @@ function Box({ isPlaying }) {
   // Set up state for the hovered and active state
   const [hovered, setHover] = useState(false);
   const [active, setActive] = useState(false);
-
   const set = useThree((state) => state.set);
+
+  const { scale } = useSpring({
+    scale: active ? 1.5 : 1,
+    config: config.wobbly,
+  });
+
   useEffect(() => {
     set({ frameloop: isPlaying ? 'always' : 'demand' });
   }, [isPlaying]);
 
-  // Rotate mesh every frame, this is outside of React without overhead
   useFrame(() => {
     // eslint-disable-next-line no-multi-assign
     mesh.current.rotation.x = mesh.current.rotation.y += 0.01;
+    mesh.current.position.y = Math.abs(Math.sin(mesh.current.rotation.x));
+    mesh.current.material.color = new THREE.Color(hslToHex(
+      mesh.current.position.y * Math.PI * 10,
+      255,
+      100,
+    ));
   });
+
   return (
-    <mesh
+    <animated.mesh
       ref={mesh}
       position={[0, 0, 0]}
-      scale={active ? 1.5 : 1}
+      scale={scale}
       onClick={(e) => setActive(!active)}
-      onPointerOver={(e) => setHover(true)}
-      onPointerOut={(e) => setHover(false)}
     >
       <boxGeometry args={[1, 1, 1]} />
-      <meshStandardMaterial color={hovered ? 'hotpink' : 'orange'} />
-    </mesh>
+      <meshLambertMaterial color="green" />
+    </animated.mesh>
   );
 }
 
@@ -50,7 +62,7 @@ function Experiment1(props) {
         frameloop={isPlaying ? 'always' : 'demand'}
       >
         <Suspense fallback={null}>
-          <Stage preset="soft">
+          <Stage contactShadow={false} preset="soft">
             <Box isPlaying={isPlaying} />
           </Stage>
         </Suspense>
