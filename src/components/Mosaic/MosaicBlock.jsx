@@ -1,8 +1,6 @@
 /* eslint-disable jsx-a11y/mouse-events-have-key-events */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, {
-  lazy, useState, cloneElement, isValidElement, useEffect,
-} from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './MosaicBlock.module.css';
 
@@ -32,12 +30,15 @@ function MosaicBlock({ Experiment }) {
   };
 
   const endPreviewExperiment = () => {
+    if (isFullscreen) { return; }
+
     setTimeout(() => {
       setIsPlaying(false);
     }, 100);
   };
 
-  const openFullscreen = () => {
+  const openFullscreen = (e) => {
+    e.stopPropagation();
     setIsPlaying(true);
     setIsFullscreen(true);
   };
@@ -50,9 +51,9 @@ function MosaicBlock({ Experiment }) {
 
   return (
     <div
-      onMouseOver={previewExperiment}
-      onMouseLeave={endPreviewExperiment}
-      onClick={openFullscreen}
+      onMouseOver={() => (!isFullscreen ? previewExperiment() : false)}
+      onMouseLeave={() => (!isFullscreen ? endPreviewExperiment() : false)}
+      onClick={(e) => (!isFullscreen ? openFullscreen(e) : false)}
       aria-hidden="true"
       className={isFullscreen ? styles.fullscreen : styles.block}
     >
