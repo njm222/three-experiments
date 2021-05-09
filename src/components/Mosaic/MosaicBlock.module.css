@@ -1,0 +1,26 @@
+.fullscreen {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    z-index: 100;
+    background: #000;
+}
+
+.block {
+    width: 50%;
+    height: 10vh;
+    background: transparent;
+}
+
+.close {
+    position: absolute;
+    background: #FFF;
+    top: 1em;
+    left: 1em;
+    width: 32px;
+    height: 32px;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
