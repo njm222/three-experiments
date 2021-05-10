@@ -40,6 +40,7 @@ const Effects = ({ active }) => {
 
   return (
     <>
+      <AdaptiveDpr />
       <effectComposer ref={composer} args={[gl]}>
         <renderPass attachArray="passes" args={[scene, camera]} />
         <glitchPass attachArray="passes" args={[size]} goWild={localActive} />

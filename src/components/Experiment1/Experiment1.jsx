@@ -3,7 +3,9 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { Loader, Stage } from '@react-three/drei';
+import {
+  Loader, MeshWobbleMaterial, Stage,
+} from '@react-three/drei';
 import { useSpring, animated, config } from '@react-spring/three';
 import * as THREE from 'three';
 import { hslToHex } from '../../helpers/hslToHex';
@@ -42,8 +44,8 @@ function Box({ isPlaying, active, setActive }) {
       scale={scale}
       onClick={(e) => setActive(!active)}
     >
-      <boxGeometry args={[1, 1, 1]} />
-      <meshLambertMaterial color="green" />
+      <boxBufferGeometry args={[1, 1, 1]} />
+      <MeshWobbleMaterial attach="material" factor={1} speed={1} color="green" />
     </animated.mesh>
   );
 }
