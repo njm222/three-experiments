@@ -7,13 +7,12 @@ import { Loader, Stage } from '@react-three/drei';
 import { useSpring, animated, config } from '@react-spring/three';
 import * as THREE from 'three';
 import { hslToHex } from '../../helpers/hslToHex';
+import Effects from './Effects';
 
-function Box({ isPlaying }) {
+function Box({ isPlaying, active, setActive }) {
   // This reference will give us direct access to the mesh
   const mesh = useRef();
   // Set up state for the hovered and active state
-  const [hovered, setHover] = useState(false);
-  const [active, setActive] = useState(false);
   const set = useThree((state) => state.set);
 
   const { scale } = useSpring({
@@ -51,10 +50,13 @@ function Box({ isPlaying }) {
 
 Box.propTypes = {
   isPlaying: PropTypes.bool.isRequired,
+  active: PropTypes.bool.isRequired,
+  setActive: PropTypes.func.isRequired,
 };
 
 function Experiment1(props) {
   const { isPlaying } = props;
+  const [active, setActive] = useState(false);
 
   return (
     <>
@@ -63,9 +65,10 @@ function Experiment1(props) {
       >
         <Suspense fallback={null}>
           <Stage contactShadow={false} preset="soft">
-            <Box isPlaying={isPlaying} />
+            <Box isPlaying={isPlaying} active={active} setActive={setActive} />
           </Stage>
         </Suspense>
+        <Effects active={active} />
       </Canvas>
       <Loader />
     </>

@@ -8,8 +8,12 @@
 
 .block {
     width: 50%;
-    height: 10vh;
+    height: 50vh;
     background: transparent;
+}
+
+.hoveredBlock {
+    background: #000;
 }
 
 .close {

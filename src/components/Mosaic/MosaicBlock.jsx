@@ -55,7 +55,10 @@ function MosaicBlock({ Experiment }) {
       onMouseLeave={() => (!isFullscreen ? endPreviewExperiment() : false)}
       onClick={(e) => (!isFullscreen ? openFullscreen(e) : false)}
       aria-hidden="true"
-      className={isFullscreen ? styles.fullscreen : styles.block}
+      className={`
+      ${isFullscreen ? styles.fullscreen : styles.block}
+      ${isPlaying ? styles.hoveredBlock : styles.block}
+      `}
     >
       <Experiment isPlaying={isPlaying} />
       {isFullscreen ? <CloseButton closeFullscreen={closeFullscreen} /> : ''}
