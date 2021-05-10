@@ -31,7 +31,7 @@ function Box({ isPlaying, active, setActive }) {
     mesh.current.rotation.x = mesh.current.rotation.y += 0.01;
     mesh.current.position.y = Math.abs(Math.sin(mesh.current.rotation.x));
     mesh.current.material.color = new THREE.Color(hslToHex(
-      mesh.current.position.y * Math.PI * 10,
+      mesh.current.position.y * Math.PI * 15,
       255,
       100,
     ));
@@ -45,7 +45,7 @@ function Box({ isPlaying, active, setActive }) {
       onClick={(e) => setActive(!active)}
     >
       <boxBufferGeometry args={[1, 1, 1]} />
-      <MeshWobbleMaterial attach="material" factor={1} speed={1} color="green" />
+      <MeshWobbleMaterial attach="material" factor={1.5} speed={1} color="green" />
     </animated.mesh>
   );
 }
