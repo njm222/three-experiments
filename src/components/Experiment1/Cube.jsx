@@ -9,7 +9,7 @@ import { useSpring, animated, config } from '@react-spring/three';
 import { hslToHex } from '../../helpers/hslToHex';
 
 const smCubeSize = 0.5;
-const lgCubeSize = 1;
+const lgCubeSize = 0.8;
 
 function Cube({ active, setActive }) {
   const mesh = useRef();
@@ -22,7 +22,7 @@ function Cube({ active, setActive }) {
   useFrame(() => {
     // eslint-disable-next-line no-multi-assign
     mesh.current.rotation.x = mesh.current.rotation.y += 0.01;
-    mesh.current.position.y = 0.8 * Math.abs(Math.sin(mesh.current.rotation.x));
+    mesh.current.position.y = Math.abs(Math.sin(mesh.current.rotation.x));
     mesh.current.material.color = new THREE.Color(hslToHex(
       mesh.current.position.y * Math.PI * 15,
       255,
@@ -33,6 +33,7 @@ function Cube({ active, setActive }) {
   return (
     <animated.mesh
       ref={mesh}
+      position={[0, 0, -2]}
       scale={scale}
       onClick={() => setActive(!active)}
     >
