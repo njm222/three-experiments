@@ -7,7 +7,7 @@ function Plane(props) {
   return (
     <mesh ref={ref} receiveShadow>
       <planeBufferGeometry attach="geometry" args={[5, 5]} />
-      <shadowMaterial attach="material" color="#171717" opacity={0.5} />
+      <shadowMaterial attach="material" color="#131313" opacity={0.5} />
     </mesh>
   );
 }

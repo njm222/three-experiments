@@ -13,12 +13,20 @@ function Rain({ numParticles }) {
   const [ref, api] = useBox(() => ({
     mass: 0.1,
     args: [rainSize, rainSize, rainSize],
-    position: [Math.random() - 0.5, Math.random() * 2, Math.random() - 0.5],
+    position: [
+      (Math.random() * 12) - 12,
+      (Math.random() * 4) + 30,
+      (Math.random() * 4) - 2,
+    ],
   }));
 
   useFrame(() => {
     api.at(Math.floor(Math.random() * numParticles))
-      .position.set((Math.random() * 2) - 1, Math.random() * 4, 0);
+      .position.set(
+        (Math.random() * 12) - 12,
+        (Math.random() * 4) + 30,
+        (Math.random() * 4) - 2,
+      );
   });
 
   return (

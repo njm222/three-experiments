@@ -3,7 +3,7 @@
     width: 100vw;
     height: 100vh;
     z-index: 100;
-    background: #000;
+    background: #AFAFAF;
 }
 
 .block {
@@ -13,7 +13,7 @@
 }
 
 .hoveredBlock {
-    background: #000;
+    background: #AFAFAF;
 }
 
 .close {

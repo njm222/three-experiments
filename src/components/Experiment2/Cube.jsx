@@ -24,7 +24,7 @@ function Cube({ active, setActive }) {
     mesh.current.rotation.x = mesh.current.rotation.y += 0.01;
     mesh.current.position.y = Math.abs(Math.sin(mesh.current.rotation.x));
     mesh.current.material.color = new THREE.Color(hslToHex(
-      mesh.current.position.y * Math.PI * 50,
+      mesh.current.position.y * Math.PI * 15,
       255,
       100,
     ));
