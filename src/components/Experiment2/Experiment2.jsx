@@ -4,7 +4,6 @@ import React, {
 import PropTypes from 'prop-types';
 import { Canvas, useThree } from '@react-three/fiber';
 import { Loader, Stage } from '@react-three/drei';
-// eslint-disable-next-line import/no-unresolved
 import { Physics } from '@react-three/cannon';
 import Rain from './Rain';
 import Plane from './Plane';

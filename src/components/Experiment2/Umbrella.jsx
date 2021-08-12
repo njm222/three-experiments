@@ -17,13 +17,20 @@ function Umbrella(props) {
 
   const geo = useMemo(() => toConvexProps(nodes.Object_3.geometry), [nodes]);
   console.log(geo);
-  const ref = useRef();
+
   // const [ref, api] = useConvexPolyhedron(() => ({
   //   rotation: [-Math.PI / 2, 0, Math.PI / 2],
   //   position: [0, 10, 5],
   //   mass: 100,
   //   args: geo,
   // }));
+
+  const [ref, api] = useBox(() => ({
+    rotation: [-Math.PI / 2, 0, Math.PI / 2],
+    position: [0, 10, 5],
+    mass: 100,
+    args: [5, 5, 1],
+  }));
 
   return (
     <group

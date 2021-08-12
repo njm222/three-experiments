@@ -1,5 +1,4 @@
 import React, { memo } from 'react';
-// eslint-disable-next-line import/no-unresolved
 import { usePlane } from '@react-three/cannon';
 
 function Plane(props) {

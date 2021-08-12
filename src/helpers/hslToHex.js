@@ -5,13 +5,12 @@ export const hslToHex = (h, s, l) => {
   h /= 360;
   s /= 255;
   l /= 255;
-  let r; let g; let
-    b;
+  let r; let g; let b;
   if (s === 0) {
     // eslint-disable-next-line no-multi-assign
     r = g = b = l; // achromatic
   } else {
-    const hue2rgb = (p: number, q: number, t: number) => {
+    const hue2rgb = (p, q, t) => {
       if (t < 0) t += 1;
       if (t > 1) t -= 1;
       if (t < 1 / 6) return p + (q - p) * 6 * t;
@@ -25,7 +24,7 @@ export const hslToHex = (h, s, l) => {
     g = hue2rgb(p, q, h);
     b = hue2rgb(p, q, h - 1 / 3);
   }
-  const toHex = (x: number) => {
+  const toHex = (x) => {
     const hex = Math.round(x * 255).toString(16);
     return hex.length === 1 ? `0${hex}` : hex;
   };

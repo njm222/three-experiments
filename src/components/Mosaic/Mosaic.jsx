@@ -3,7 +3,6 @@ import styles from './Mosaic.module.css';
 import MosaicBlock from './MosaicBlock';
 import Experiment1 from '../Experiment1/Experiment1';
 import Experiment2 from '../Experiment2/Experiment2';
-// TODO: Dynamic import these components? not necessary because all components are needed.
 
 const experiments = [
   { experiment: Experiment1, key: 'MosaicBlock-1' },
